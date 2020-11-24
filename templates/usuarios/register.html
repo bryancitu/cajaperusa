@@ -1,4 +1,5 @@
 {% extends "base.html" %} 
+{% load static %} 
 
 {% block title %}
     Registrarse
@@ -9,7 +10,9 @@
     
     <h1>Registrarse nuevo usuario</h1>
     <form action="" method="post">
+        {% csrf_token %}
         {{form.as_p}}
+        <button type="submit">Registrar</button>
     </form>
 
 {% endblock content %}

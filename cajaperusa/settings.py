@@ -123,3 +123,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# dir our media file
+STATIC_ROOT = BASE_DIR / 'media'
+
+# dir our static file (Django files by default)
+STATICFILES_DIRS = [BASE_DIR / 'static']

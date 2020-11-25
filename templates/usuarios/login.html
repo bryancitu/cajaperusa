@@ -1,0 +1,19 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block title %}
+    Registrarse
+{% endblock title %}
+    
+
+{% block content %}
+    
+    <h1>Iniciar Sesion</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">iniciar sesion</button>
+    </form>
+
+{% endblock content %}
+    

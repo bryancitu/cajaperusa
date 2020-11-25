@@ -33,10 +33,14 @@ class UsuarioRegisterForm(forms.ModelForm):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
 
+         # TODO Validation
+
         if password1 != password2 :
             self.add_error('password2', 'Las contraseñas no son iguales' )
+        else:
+            if len(password2) < 9:
+                self.add_error('password12', 'Las contraseñas deben tener como minimo 9 digito')
     
     
-         # TODO Validation
     
         return password2

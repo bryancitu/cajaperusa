@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic.edit import FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
-from .forms import UsuarioRegisterForm, LoginForm
+from .forms import UsuarioRegisterForm, LoginForm, UpdatePasswordForm
 from .models import Usuarios
 from django.http import HttpResponseRedirect
 
@@ -44,3 +45,25 @@ class LogoutVIew(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         return HttpResponseRedirect(reverse('home'))
+
+
+class UpdatePasswordView(LoginRequiredMixin, FormView):
+    template_name = 'usuarios/update.html'
+    login_url = reverse_lazy('login')
+    form_class = UpdatePasswordForm
+    success_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        usuario = self.request.user
+        user = authenticate(
+            username=usuario.username,
+            password=form.cleaned_data['password1']
+        )
+
+        if user:
+            new_password = form.cleaned_data['password2']
+            usuario.set_password(new_password)
+            usuario.save()
+
+        logout(self.request)
+        return super(UpdatePasswordView, self).form_valid(form)

@@ -36,7 +36,6 @@ class LoginUsuario(FormView):
             username=form.cleaned_data['username'],
             password=form.cleaned_data['password']
         )
-        print(user)
         login(self.request, user)
         return super(LoginUsuario, self).form_valid(form)
 

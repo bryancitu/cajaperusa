@@ -27,7 +27,7 @@ SECRET_KEY = "SECRET_KEY"
 DEBUG = True
 
 # our domains
-ALLOWED_HOSTS = ['localhost','.herokuapp.com']
+ALLOWED_HOSTS = ['localhost','.herokuapp.com',"192.168.1.9"]
 
 
 # Application definition

@@ -1,0 +1,20 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block title %}
+    Cambiar Contraseña
+{% endblock title %}
+    
+
+{% block content %}
+    
+    <h1>Vereficador de Email </h1>
+    <h3>Ingrese el codigo de Verificación</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Confirmar</button>
+    </form>
+
+{% endblock content %}
+    

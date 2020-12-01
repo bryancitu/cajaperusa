@@ -1,19 +1,42 @@
 {% extends "base.html" %} 
 {% load static %} 
 
-{% block title %}
-    Registrarse
-{% endblock title %}
-    
+{% block title %}Registrate{% endblock title %}
+
+{% block css %}
+<style>
+.contendor-sesiones{width: 80%;max-width: 38rem;margin: auto;border: .1rem solid #777;border-radius: 1rem;padding: 1.5rem;margin-top: 2rem;
+            background-color: rgba(119, 119, 119, 0.03);box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);}
+.contendor-sesiones form p{display: flex;flex-direction: column;}
+form input[type="text"], form input[type="password"], form input[type="email"]{border: .1rem solid #777; border-radius: .5rem;padding: 1rem 1.2rem;margin-top: 1rem;}
+form button{background-color: #a139b0;color: #fff;border: .1rem solid #a139b0;border-radius: .7rem;padding: 1rem 1.2rem;font-size: 1.5rem;margin-top: 3rem;margin-bottom: 2rem;}
+form{text-align: center;}
+form label{text-align: left;}
+@media only screen and (min-width: 900px) {
+    .contendor-sesiones{padding: 3rem;}
+    form input[type="text"], form input[type="password"]{font-size: 1.6rem;}
+    form button{font-size: 1.8rem;margin-bottom: 0rem;}
+    form label{text-align: left;font-size: 1.8rem;}
+}
+</style>
+{% endblock css %}     
+
 
 {% block content %}
-    
-    <h1>Registrarse nuevo usuario</h1>
+
+<div class="contendor-sesiones">
+    <h1>Registrate</h1>
     <form action="" method="post">
         {% csrf_token %}
-        {{form.as_p}}
+        <p><label for="id_username">Username:</label> <input type="text" name="username" maxlength="30" required="" id="id_username"></p>
+        <p><label for="id_email">Email:</label> <input type="email" name="email" maxlength="254" required="" id="id_email"></p>
+        <p><label for="id_first_name">Nombres:</label> <input type="text" name="first_name" maxlength="50" required="" id="id_first_name"></p>
+        <p><label for="id_last_name">Apellidos:</label> <input type="text" name="last_name" maxlength="50" required="" id="id_last_name"></p>
+        <p><label for="id_password1">Contraseña:</label> <input type="password" name="password1" placeholder="Contraseña" required="" id="id_password1"></p>
+        <p><label for="id_password2">Contraseña:</label> <input type="password" name="password2" placeholder="Repetir Contraseña" required="" id="id_password2"></p>
         <button type="submit">Registrar</button>
     </form>
+</div>
 
 {% endblock content %}
     

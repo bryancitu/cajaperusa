@@ -10,6 +10,7 @@ class Usuarios(AbstractBaseUser, PermissionsMixin):
     email       = models.EmailField(max_length=254, unique=True)
     first_name  = models.CharField(max_length=50)
     last_name   = models.CharField(max_length=50)
+    codregistro = models.CharField(max_length=10, blank=True, null=True)
 
     is_staff = models.BooleanField(default=False)
 

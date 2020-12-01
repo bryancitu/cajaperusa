@@ -99,3 +99,8 @@ class UpdatePasswordForm(forms.Form):
             }
         )
     )
+
+
+class VerificationForm(forms.Form):
+    codregistro = forms.CharField(required=True)
+    

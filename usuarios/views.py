@@ -1,12 +1,16 @@
 from django.shortcuts import render
+from django.core.mail import send_mail
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic.edit import FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
-from .forms import UsuarioRegisterForm, LoginForm, UpdatePasswordForm
-from .models import Usuarios
 from django.http import HttpResponseRedirect
+from django.conf import settings    
+# our classes and function
+from .forms import UsuarioRegisterForm, LoginForm, UpdatePasswordForm, VerificationForm
+from .models import Usuarios
+from .functions import code_generator
 
 # Create your views here.
 
@@ -16,6 +20,8 @@ class UsuarioRegisterView(FormView):
     success_url = '/'
 
     def form_valid(self, form):
+        #generamos el codigo
+        codigo = code_generator()
 
         Usuarios.objects.create_user(
             form.cleaned_data['username'],
@@ -23,9 +29,22 @@ class UsuarioRegisterView(FormView):
             form.cleaned_data['password1'],
             first_name=form.cleaned_data['first_name'],
             last_name=form.cleaned_data['last_name'],
+            codregistro=codigo
         )
-
-        return super(UsuarioRegisterView, self).form_valid(form)
+        # enviar el codigo al email del user
+        asunto = "Confirmacion de email"
+        mensaje = "codigo de verificacion " + codigo
+        email_remitente = settings.EMAIL_HOST_USER 
+        # 
+        print("asunto: ",asunto)
+        print("mensaje: ",mensaje)
+        print("email_remitente: ",email_remitente)
+        print("email: ",form.cleaned_data['email'])
+        to = form.cleaned_data['email']
+        send_mail(asunto, mensaje, email_remitente, [to], fail_silently=False)
+        # redirigir a pantalla de validacion
+        return HttpResponseRedirect(reverse('verification'))
+        # return super(UsuarioRegisterView, self).form_valid(form)
 
 class LoginUsuario(FormView):
     template_name = 'usuarios/login.html'
@@ -67,3 +86,12 @@ class UpdatePasswordView(LoginRequiredMixin, FormView):
 
         logout(self.request)
         return super(UpdatePasswordView, self).form_valid(form)
+
+
+class CodeVerificationView(FormView):
+    template_name = "usuarios/verificacion.html"
+    form_class = VerificationForm
+    success_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        return super(CodeVerificationView, self).form_valid(form)

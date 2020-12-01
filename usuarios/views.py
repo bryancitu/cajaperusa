@@ -23,7 +23,7 @@ class UsuarioRegisterView(FormView):
         #generamos el codigo
         codigo = code_generator()
 
-        Usuarios.objects.create_user(
+        usuario = Usuarios.objects.create_user(
             form.cleaned_data['username'],
             form.cleaned_data['email'],
             form.cleaned_data['password1'],
@@ -36,14 +36,15 @@ class UsuarioRegisterView(FormView):
         mensaje = "codigo de verificacion " + codigo
         email_remitente = settings.EMAIL_HOST_USER 
         # 
-        print("asunto: ",asunto)
-        print("mensaje: ",mensaje)
-        print("email_remitente: ",email_remitente)
-        print("email: ",form.cleaned_data['email'])
         to = form.cleaned_data['email']
         send_mail(asunto, mensaje, email_remitente, [to], fail_silently=False)
         # redirigir a pantalla de validacion
-        return HttpResponseRedirect(reverse('verification'))
+        return HttpResponseRedirect(
+            reverse(
+                'verification',
+                kwargs={'pk': usuario.id}
+            )
+        )
         # return super(UsuarioRegisterView, self).form_valid(form)
 
 class LoginUsuario(FormView):
@@ -93,5 +94,15 @@ class CodeVerificationView(FormView):
     form_class = VerificationForm
     success_url = reverse_lazy('login')
 
+    def get_form_kwargs(self):
+        kwargs = super(CodeVerificationView, self).get_form_kwargs()
+        kwargs.update({
+            'pk' : self.kwargs['pk']
+        })
+        return kwargs
+
     def form_valid(self, form):
+        Usuarios.objects.filter(
+            id=self.kwargs['pk']
+        )
         return super(CodeVerificationView, self).form_valid(form)

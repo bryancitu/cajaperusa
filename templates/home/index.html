@@ -16,11 +16,30 @@ h1,h2{color: #fff;}
 .title-contenido{width: 80%;font-size: 1.2rem;margin: 0rem;text-align: left;font-weight: bold;margin: 0rem;}
 .desde-banner{background-color: #a139b0;border: .1rem solid #a139b0;border-radius: 1rem;color: #fff;padding: .3rem .7rem;margin: 0rem;width: 11rem;}
 .subtitle-contenido{font-size: 1.2rem;text-align: left;margin: 0rem;}
+/* Imagenes */
+.contenedor-principal-nuestros-productos{position: relative;}
+.contenedor-nuestros-productos{width: 100%;overflow-x: auto;overflow-y: hidden;-webkit-overflow-scrolling: touch;user-select: none; 
+        -ms-overflow-style: -ms-autohiding-scrollbar;position: relative;}
+.contenedor-nuestros-productos::-webkit-scrollbar {display:none;}
+.contenedor-images-nuestros-productos{display: flex;width: 300%;justify-content: space-around;}
+.image-nuestro-producto{width: 94%;object-fit: cover;margin: 3%;}
+
+
+#prev_mis_services_recomed_prod_detail, #next_mis_services_recomed_prod_detail {display: block;cursor: pointer;position: absolute;top: 45%;width: auto;color:#354494;font-weight: bold;font-size: 20px;border-radius: 0 3px 3px 0;user-select: none;}
+#prev_mis_services_recomed_prod_detail img, #next_mis_services_recomed_prod_detail img{width: 37px;}
+#prev_mis_services_recomed_prod_detail {position: absolute;left: 0px;border-radius: 3px 0 0 3px;display: none;}
+#next_mis_services_recomed_prod_detail {position: absolute;right: 0px;border-radius: 3px 0 0 3px;}
+#prev_mis_services_recomed_prod_detail:hover, #next_mis_services_recomed_prod_detail:hover {color: #354494}
+
 @media only screen and (min-width: 500px) {
     .contenido-banner{height: 30%;top: 35%;}
     .title-contenido{font-size: 1.6rem;}
     .desde-banner{font-size: 1.6rem;width: 15rem;}
     .subtitle-contenido{font-size: 1.6rem;}
+
+    /* Imagenes */
+    .contenedor-images-nuestros-productos{width: 100%;}
+    .contenedor-image-producto{width: 100%;object-fit: contain;}
 }
 @media only screen and (min-width: 900px) {
     .contenido-banner{width: 42.5rem;}
@@ -55,24 +74,48 @@ h1,h2{color: #fff;}
         <h2 class="subtitle-contenido mobile">¿Serigrafía digital?</h2>
     </div>
 </div>
-    <h3>CREATIVIDAD AL MÁXIMO</h3>
 
+ <h3>CREATIVIDAD AL MÁXIMO</h3>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+<div class="contenedor-principal-nuestros-productos">
+    <div class="contenedor-nuestros-productos" id="contenedor_nuestros_productos" >
+        <div class="contenedor-images-nuestros-productos" >
+            <div class="contenedor-image-producto">
+                <img class="image-nuestro-producto" src="https://ox.pe/wp-content/uploads/2018/11/Polo-personalizado-Negro-600x600.jpg" alt="">
+            </div>
+            <div class="contenedor-image-producto">
+                <img class="image-nuestro-producto" src="https://ox.pe/wp-content/uploads/2018/09/dise%C3%B1o-dead-king-MOCKUP-HOMBRE-e1537246627697-600x600.jpg" alt="">
+            </div>
+            <div class="contenedor-image-producto">
+                <img class="image-nuestro-producto" src="https://ox.pe/wp-content/uploads/2018/09/dise%C3%B1o-the-wild-ones-CREAR-MOCKUP-mujer-600x600.jpg" alt="">
+            </div>
+        </div>
+    </div>
+    <span id="prev_mis_services_recomed_prod_detail"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+    <span id="next_mis_services_recomed_prod_detail"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+</div>
     
+
+
+<script>
+let ctnd_recomed = document.getElementById("contenedor_nuestros_productos"); 
+let pserv = document.getElementById("prev_mis_services_recomed_prod_detail");
+let nserv = document.getElementById("next_mis_services_recomed_prod_detail");
+let ancho = document.body.offsetWidth
+
+pserv.onclick = function(){
+    ctnd_recomed.scrollLeft -= ancho;
+    if(ctnd_recomed.scrollLeft == 0){
+        pserv.style.display = "none";
+    }
+}
+
+nserv.onclick = function(){
+    ctnd_recomed.scrollLeft += ancho;
+    if(ctnd_recomed.scrollLeft != 0){
+        pserv.style.display = "block";
+    }
+}
+</script>
 {% endblock content %}
     

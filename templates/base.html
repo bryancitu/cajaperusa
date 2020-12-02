@@ -98,14 +98,20 @@
         .whatsapp{position:fixed;width:60px;height:60px;bottom:20px;right:30px;background-color:#07bc4c;color:#FFF!important;border-radius:50px;text-align:center;font-size:30px;z-index:100}
         .whatsapp-icon{margin-top:13px}
 
-        footer{background-color: black;}
+        footer{background-color: black;margin-top: 2rem;}
         .contenedor-top-footer{color: #fff;display: flex;flex-wrap: wrap;max-width: 120rem;margin: auto;padding: 1rem;justify-content: space-between;}
-        .contenido-top-footer{width: calc(100% - 2rem);height: 32rem;margin: auto;}
-        .title-top-footer{text-align: center;}
+        .contenido-top-footer{width: calc(100% - 2rem);margin: auto;}
+        .title-top-footer{text-align: center;font-size: 1.6rem;font-weight: bold;margin-top: 2rem;}
+        .contenedor-contacto-footer{padding: 1rem;display: flex;flex-direction: column;justify-content: space-between;height: 20rem;}
+        .topico-contacto{margin: 1.5rem .5rem;}
+        .contenedor-img-footer{text-align: center;padding: 1.5rem;}
+        .nustra-comunidad-footer{text-align: center;padding: 1rem;}
+        .topico-comunidad-footer{margin: 1.5rem .5rem;}
+        .contacto-topicos-footer{padding: 0rem 2rem;}
         
         .contenedor-bottom-footer{background-color: #a139b0;display: flex;flex-wrap: wrap;justify-content: space-between;padding: 1rem;color: #fff;font-size: 1.2rem;justify-items: center;}
         .copyright{margin-top: .5rem;}
-        .contenedor-about-us{width: 100%; display: flex;justify-content: space-between;max-width: 28rem;margin-top: .5rem;}
+        .contenedor-about-us{width: 100%; display: flex;justify-content: space-around;max-width: 28rem;margin-top: .5rem;}
 
         
         @media only screen and (min-width: 900px) {
@@ -139,9 +145,10 @@
             .contenedor-serch-principal{width: 25rem;margin: .7rem;}
 
             /* footer */
+            .contenedor-top-footer{padding: 3rem 1rem;}
             .contenido-top-footer{width: 33%;height: 32rem;}
 
-            .contenedor-bottom-footer{padding: 1rem 2rem;}
+            .contenedor-bottom-footer{padding: 1rem 2rem;justify-content: space-around;}
             
         }
         @media only screen and (min-width: 1200px) {
@@ -247,22 +254,40 @@
 
     
 {% block footer %}
-
+<!-- Iconon de Whassap -->
 <div class="escribenos-wsp"> ¡Escribenos!</div>
 <a href="https://wa.me/51931853259?text=Hola%20me%20gustaría%20saber:" class="whatsapp" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a>
     
+<!-- Footer -->
 <footer>
     <div class="contenedor-top-footer">
         <div class="contenido-top-footer">
             <div class="title-top-footer">COMUNIDAD</div>
+            <div class="nustra-comunidad-footer"> 
+                <div class="topico-comunidad-footer">Blog</div>
+                <div class="topico-comunidad-footer">Polos Personalizados</div>
+                <div class="topico-comunidad-footer">Concursos</div>
+                <div class="topico-comunidad-footer">Curso Online</div>
+            </div>
+            <hr class="mobile">
         </div>
         <div class="contenido-top-footer">
             <div class="title-top-footer">POLO PERSONALIZADO</div>
-
+            <div class="contenedor-img-footer">
+                <img src="https://ox.pe/wp-content/uploads/2020/07/Polo-personalizado-Negro-240-x-270.jpg" alt="">
+            </div>
+            <hr class="mobile">
         </div>
         <div class="contenido-top-footer">
             <div class="title-top-footer">CONTACTO CAPERUSA</div>
-
+            <div class="contenedor-contacto-footer">
+                <div class="contacto-topicos-footer">
+                    <div class="topico-contacto"><b>Dirección: </b>San Martín 215 Barranco </div>
+                    <div class="topico-contacto"><b>Celular: </b>931-853-259</div>
+                    <div class="topico-contacto"><b>Horario: </b>Lun-Vie: 10:00 a 18:00</div>
+                </div>
+                <div class="logo-topico" style="text-align: center;font-size: 2.2rem;margin-bottom: 2rem;"><b>CAJAPERUSA</b></div>
+            </div>
         </div>
     </div>
     <div class="contenedor-bottom-footer">

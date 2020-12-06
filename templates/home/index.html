@@ -24,6 +24,17 @@ h1,h2{color: #fff;}
 .contenedor-images-nuestros-productos{display: flex;width: 300%;justify-content: space-around;}
 .image-nuestro-producto{width: 94%;object-fit: cover;margin: 3%;}
 
+.contenedor-image-producto{position: relative;}
+.descripcion-img-nuestro-producto{position: absolute;top: 60%;left: 3%;width: calc(94% - 2rem);background-color: rgba(255, 255, 255, 0.9);padding: 1rem;text-align: center;}
+.titulo-im-nuestro-producto{font-size: 1.8rem;font-weight: bold;padding-top: .7rem;}
+.subtitulo-im-nuestro-producto{color: #a139b0;font-size: 1.2rem;padding: .6rem;}
+
+.cinp1:hover .descripcion-img-nuestro-producto{background-color: #a139b0;color: #fff;}
+.cinp1:hover .subtitulo-im-nuestro-producto{color: #fff;}
+.cinp2:hover .descripcion-img-nuestro-producto{background-color: #a139b0;color: #fff;}
+.cinp2:hover .subtitulo-im-nuestro-producto{color: #fff;}
+.cinp3:hover .descripcion-img-nuestro-producto{background-color: #a139b0;color: #fff;}
+.cinp3:hover .subtitulo-im-nuestro-producto{color: #fff;}
 
 #prev_mis_services_recomed_prod_detail, #next_mis_services_recomed_prod_detail {display: block;cursor: pointer;position: absolute;top: 45%;width: auto;color:#354494;font-weight: bold;font-size: 20px;border-radius: 0 3px 3px 0;user-select: none;}
 #prev_mis_services_recomed_prod_detail img, #next_mis_services_recomed_prod_detail img{width: 37px;}
@@ -47,6 +58,9 @@ h1,h2{color: #fff;}
     .contenedor-btn-banner{display: flex;justify-content: space-between;}
     .desde-banner{font-size: 1.8rem;width: 23rem;border-radius: .5rem;padding:1rem;border-right: 5rem;}
     .serigrafia-banner{background-color: transparent;border: .2rem solid #fff;color: #fff;font-size: 1.8rem;width: 18rem;border-radius: .5rem;padding: .8rem;}
+
+    /* Imagenes */
+    .descripcion-img-nuestro-producto{top: 70%;}
 
 }
 @media only screen and (min-width: 1200px) {
@@ -80,14 +94,26 @@ h1,h2{color: #fff;}
 <div class="contenedor-principal-nuestros-productos">
     <div class="contenedor-nuestros-productos" id="contenedor_nuestros_productos" >
         <div class="contenedor-images-nuestros-productos" >
-            <div class="contenedor-image-producto">
+            <div class="contenedor-image-producto cinp1">
                 <img class="image-nuestro-producto" src="https://ox.pe/wp-content/uploads/2018/11/Polo-personalizado-Negro-600x600.jpg" alt="">
+                <div class="descripcion-img-nuestro-producto dinp1">
+                    <div class="titulo-im-nuestro-producto">POLOS PERSONALIZADOS</div>
+                    <div class="subtitulo-im-nuestro-producto">8 PRODUCTOS</div>
+                </div>
             </div>
-            <div class="contenedor-image-producto">
+            <div class="contenedor-image-producto cinp2">
                 <img class="image-nuestro-producto" src="https://ox.pe/wp-content/uploads/2018/09/dise%C3%B1o-dead-king-MOCKUP-HOMBRE-e1537246627697-600x600.jpg" alt="">
+                <div class="descripcion-img-nuestro-producto dinp2">
+                    <div class="titulo-im-nuestro-producto">POLOS PARA HOMBRES</div>
+                    <div class="subtitulo-im-nuestro-producto">38 PRODUCTOS</div>
+                </div>
             </div>
-            <div class="contenedor-image-producto">
+            <div class="contenedor-image-producto cinp3">
                 <img class="image-nuestro-producto" src="https://ox.pe/wp-content/uploads/2018/09/dise%C3%B1o-the-wild-ones-CREAR-MOCKUP-mujer-600x600.jpg" alt="">
+                <div class="descripcion-img-nuestro-producto dinp3">
+                    <div class="titulo-im-nuestro-producto">POLOS PARA MUJERES</div>
+                    <div class="subtitulo-im-nuestro-producto">16 PRODUCTOS</div>
+                </div>
             </div>
         </div>
     </div>

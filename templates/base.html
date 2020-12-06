@@ -232,7 +232,7 @@
             <h3><b>CAJAPERUSA</b></h3>
             <nav class="opciones-navbar-desktop">
                 <a href="{% url 'home' %}" class="cajaperusa"> INICIO</a>
-                <a href="" class="cajaperusa"> TIENDA</a>
+                <a href="{% url 'personalizar_producto' %}" class="cajaperusa"> TIENDA</a>
             </nav>
         </div>
         <div class="header-right">
@@ -255,6 +255,7 @@
 
     
 {% block footer %}
+
 <!-- Iconon de Whassap -->
 <div class="escribenos-wsp"> ¡Escribenos!</div>
 <a href="https://wa.me/51931853259?text=Hola%20me%20gustaría%20saber:" class="whatsapp" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a>

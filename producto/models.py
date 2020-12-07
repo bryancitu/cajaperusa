@@ -40,4 +40,4 @@ class DatosCita(BaseModel):
         verbose_name_plural = 'DatosCitas'
 
     def __str__(self):
-        return str(self.id)
+        return str(self.usuario)

@@ -47,4 +47,11 @@ class SolicitarCitaView(TemplateView):
 
 class HistorialPagosVIew(TemplateView):
     template_name = "producto/historial_pagos.html"
-    pass
+    
+    def get_context_data(self, **kwargs):
+        user = Usuarios.objects.filter(id=self.request.user.id).first()
+        solicitudes = DatosCita.objects.filter(usuario = user)
+        cantidad_solicitud = DatosCita.objects.filter(usuario = user).count()
+        kwargs['solicitudes'] = solicitudes
+        kwargs['cantidad_solicitud'] = cantidad_solicitud
+        return kwargs

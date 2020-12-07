@@ -1,0 +1,25 @@
+{% for message in messages %}
+<style>
+.alert-success{background-color: #d4edda;border-color: #c3e6cb; color: #155724;}
+.alert-danger{background-color: #f8d7da;border-color: #f5c6cb;color: #721c24;}
+
+.callout {position: fixed;top: 50px;right: 10px;margin-left: 20px;max-width: 500px;z-index: 1000000;}
+.callout-contenido {padding: 12px;font-size: 18px;border-radius: 10px;padding-right: 40px;}
+.closebtn {position: absolute;top: 5px;right: 15px;font-size: 30px;cursor: pointer;margin-top: 3px;}
+.closebtnalert-success{color: #155724;}
+.closebtnalert-danger{color: #721c24;}
+.closebtn:hover {color: #000;}
+
+.closebtnalert-info{display: none;}
+
+@media only screen and (min-width: 992px) {
+.callout {top: 100px;}
+    .callout-contenido{font-size: 20px;padding: 15px;padding-right: 40px;}
+}
+</style>
+
+<div class="callout">
+    <div class="callout-contenido {{ message.tags }}">{{ message }}</div>
+    <span class="closebtn{{ message.tags }} closebtn" onclick="this.parentElement.style.display='none';">×</span>
+</div>
+{% endfor %}

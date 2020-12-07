@@ -1,0 +1,80 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block title %}
+    Poleras Personalizados
+{% endblock title %}
+
+
+{% block css %}
+<!-- XDSoft DateTimePicker -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+<style>
+.contendor-sesiones{width: 80%;max-width: 38rem;margin: auto;border: .1rem solid #777;border-radius: 1rem;padding: 1.5rem;margin-top: 2rem;
+            background-color: rgba(119, 119, 119, 0.03);box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);overflow: hidden;}
+.contendor-sesiones form p{display: flex;flex-direction: column;}
+form input[type="text"], form textarea, form select{border: .1rem solid #777; border-radius: .5rem;padding: 1rem 1.2rem;margin-top: 1rem;}
+form button{background-color: #a139b0;color: #fff;border: .1rem solid #a139b0;border-radius: .7rem;padding: 1rem 1.2rem;font-size: 1.5rem;margin-top: 3rem;margin-bottom: 2rem;}
+form{text-align: center;}
+form label{text-align: left;}
+@media only screen and (min-width: 900px) {
+    .contendor-sesiones{padding: 3rem;}
+    form input[type="text"], form input[type="password"]{font-size: 1.6rem;}
+    form button{font-size: 1.8rem;margin-bottom: 0rem;}
+    form label{text-align: left;font-size: 1.8rem;}
+}
+</style>
+{% endblock css %}
+
+
+{% block javascript %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+{% endblock javascript %}
+    
+
+{% block content %}
+<main>
+
+
+<div class="contendor-sesiones">
+    <h1>Solicitar una Cita con el Diseñador</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p><label for="id_fecha_cita">Fecha cita:</label> <input type="text" name="fecha_cita" required="" id="id_fecha_cita" value='{% now "Y/m/d H:i" %}'></p>
+    
+        <p><label for="id_talla">Talla:</label><select name="talla" required="" id="id_talla">
+            <option value="" selected="">---------</option>
+            <option value="S">Small</option>
+            <option value="M">Medium</option>
+            <option value="L">Large</option>
+            <option value="XL">XL-Large</option>
+        </select></p>
+    
+        <p><label for="id_medio_comunicacion">Medio de Comunicación:</label> <select name="medio_comunicacion" required="" id="id_medio_comunicacion">
+            <option value="" selected="">---------</option>
+            <option value="Zoom">Zoom</option>
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="FB-messenger">FB-messenger</option>
+        </select></p>
+    
+        <p><label for="id_descripcion_complementaria">Descripcion complementaria:</label> </p>
+            <!-- <div class="django-ckeditor-widget" data-field-id="id_descripcion_complementaria" style="display: inline-block;"> -->
+            <textarea cols="40" id="id_descripcion_complementaria" name="descripcion_complementaria" rows="10" data-processed="0" data-config="{&quot;skin&quot;: &quot;moono-lisa&quot;, &quot;toolbar_Basic&quot;: [[&quot;Source&quot;, &quot;-&quot;, &quot;Bold&quot;, &quot;Italic&quot;]], &quot;toolbar_Full&quot;: [[&quot;Styles&quot;, &quot;Format&quot;, &quot;Bold&quot;, &quot;Italic&quot;, &quot;Underline&quot;, &quot;Strike&quot;, &quot;SpellChecker&quot;, &quot;Undo&quot;, &quot;Redo&quot;], [&quot;Link&quot;, &quot;Unlink&quot;, &quot;Anchor&quot;], [&quot;Image&quot;, &quot;Flash&quot;, &quot;Table&quot;, &quot;HorizontalRule&quot;], [&quot;TextColor&quot;, &quot;BGColor&quot;], [&quot;Smiley&quot;, &quot;SpecialChar&quot;], [&quot;Source&quot;]], &quot;toolbar&quot;: &quot;Full&quot;, &quot;height&quot;: 291, &quot;width&quot;: 835, &quot;filebrowserWindowWidth&quot;: 940, &quot;filebrowserWindowHeight&quot;: 725, &quot;language&quot;: &quot;en-PE&quot;}" data-external-plugin-resources="[]" data-id="id_descripcion_complementaria" data-type="ckeditortype"></textarea>
+            <!-- </div><p></p> -->
+            <p></p>
+        <button type="submit">Solicitar</button>
+    </form>
+</div>
+
+<!-- <input id="datetimepicker" type="text"> -->
+
+<script>
+    $(function () {
+    $("#id_fecha_cita").datetimepicker();
+    });
+</script>
+
+</main>
+{% endblock content %}
+    

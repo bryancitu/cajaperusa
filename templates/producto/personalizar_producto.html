@@ -70,11 +70,11 @@ ul.ruta-producto li a:hover{text-decoration:none;background-color: #0000002c;bor
     </div>
     <div class="contenedor-descripcion-poleras-personalizada">
         <h2>POLERA PERSONALIZADA COLOR NEGRO</h2>
-        <div class="precio-poleras-personalizado" > <s>S/120.00</s>  S/89.00</div>
+        <div class="precio-poleras-personalizado" > <s>S/ 120.00</s>  S/ 89.00</div>
         <div class="subtitulo-descripcion-poleras-personalizada">Personaliza tu polera con los mejores diseñadores, capaces de realizar tu diseño anhelado.</div>
         
         {% if user.username %}
-            <a href="" class="btn-crear-diseno">CREAR DISEÑO</a>
+            <a href="{% url 'solicitar_cita' %}" class="btn-crear-diseno">CREAR DISEÑO</a>
         {% else %}
             <a href="{% url 'registrarse' %}" class="btn-crear-diseno">CREAR DISEÑO</a>
         {% endif %}

@@ -159,9 +159,8 @@
     {% endblock css_base %}
         
 
-    {% block css %} 
-    {% endblock css %}
     {% block javascript %}{% endblock javascript %}
+    {% block css %}{% endblock css %}
         
 </head>
 <body>
@@ -240,15 +239,17 @@
                 <input type="search" placeholder="Buscar.." value="" name="s" autocomplete="off">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </div>
-            <span>CARRITO | S/0.00</span>
+            <span>CARRITO | {% if user.monto_pagar %}S/{{user.monto_pagar}}{% else %}S/0.00{% endif %}</span>
             <span class="btn-sidebar fa fa-shopping-cart"></span>
         </div>
     </div>
 </header>
 
+<div id="message_rend">
+    {% include 'messages.html' %}
+</div>
 {% endblock header %}
         
-    
 
 {% block content %}{% endblock content %}
 

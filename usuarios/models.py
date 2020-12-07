@@ -6,11 +6,12 @@ from .managers import UserManager
 
 class Usuarios(AbstractBaseUser, PermissionsMixin):
 
-    username    = models.CharField(max_length=30, unique=True)
-    email       = models.EmailField(max_length=254, unique=True)
-    first_name  = models.CharField(max_length=50)
-    last_name   = models.CharField(max_length=50)
-    codregistro = models.CharField(max_length=10, blank=True, null=True)
+    username        = models.CharField(max_length=30, unique=True)
+    email           = models.EmailField(max_length=254, unique=True)
+    first_name      = models.CharField(max_length=50)
+    last_name       = models.CharField(max_length=50)
+    codregistro     = models.CharField(max_length=10, blank=True, null=True)
+    monto_pagar     = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     is_staff = models.BooleanField(default=False)
 

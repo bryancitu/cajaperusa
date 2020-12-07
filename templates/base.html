@@ -140,7 +140,7 @@
             .opciones-navbar-desktop{display: flex;color: #fff;border: none;}
             .opciones-navbar-desktop a{border: none;margin: 0rem;display: flex;align-self: center;}
 
-            .header-right{display: flex;width: 47rem;justify-content: space-between;}
+            .header-right{display: flex;width: 48rem;justify-content: space-between;}
             .header-right span{display: flex;display: flex;align-self: center;margin-left: 1rem;}
             .contenedor-serch-principal{width: 25rem;margin: .7rem;}
 
@@ -239,8 +239,8 @@
                 <input type="search" placeholder="Buscar.." value="" name="s" autocomplete="off">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </div>
-            <span>CARRITO | {% if user.monto_pagar %}S/{{user.monto_pagar}}{% else %}S/0.00{% endif %}</span>
-            <span class="btn-sidebar fa fa-shopping-cart"></span>
+            <span> CARRITO | {% if user.monto_pagar %}S/ {{user.monto_pagar}}{% else %}S/ 0.00{% endif %}</span>
+            <a href="{% url 'historial_pagos' %}" class="btn-sidebar"><span class="fa fa-shopping-cart"></span></a>
         </div>
     </div>
 </header>

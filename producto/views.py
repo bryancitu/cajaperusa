@@ -43,3 +43,8 @@ class SolicitarCitaView(TemplateView):
         context['form'] = form
         messages.error(request, 'Completar el formulario correctamente!')
         return self.render_to_response(context)
+
+
+class HistorialPagosVIew(TemplateView):
+    template_name = "producto/historial_pagos.html"
+    pass

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'usuarios',
     'home',
     'producto',
+    'design',
 ]
 
 MIDDLEWARE = [

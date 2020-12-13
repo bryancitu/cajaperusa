@@ -239,12 +239,12 @@
             <nav class="opciones-navbar-desktop">
                 <a href="{% url 'home' %}" class="cajaperusa"> INICIO</a>
                 <div class="contenedor-quehacemos-opciones">
-                    <a href="" class="accordion-sidebar-admin"> ¿QUÉ HACEMOS?</a>
+                    <a class="accordion-sidebar-admin"> ¿QUÉ HACEMOS?</a>
                     <div class="panel_sidebar_admin">
-                        <a href=""><span> Cualquier tipo de diseños</span></a>
-                        <a href=""><span> Diseño + Impresión en papel</span></a>
-                        <a href=""><span> Diseño + Impresión en objetos</span></a>
-                        <a href=""><span> Impresión de diseños en objetos</span></a>
+                        <a href="{% url 'cualquier_tipo_diseno' %}"><span> Cualquier tipo de diseños</span></a>
+                        <a href="{% url 'diseno_impresion_papel' %}"><span> Diseño + Impresión en papel</span></a>
+                        <a href="{% url 'diseno_impresion_objeto' %}"><span> Diseño + Impresión en objetos</span></a>
+                        <a href="{% url 'impresion_objeto' %}"><span> Impresión de diseños en objetos</span></a>
                     </div>
                 </div>
                 <a href="{% url 'personalizar_producto' %}" class="cajaperusa"> TIENDA</a>

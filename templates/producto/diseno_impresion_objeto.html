@@ -1,0 +1,94 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block title %}
+    Poleras Personalizados
+{% endblock title %}
+
+
+{% block css %}
+<style>
+/** Ruta Producto **/
+.contenedor-ruta-producto{background-color: #a139b0;width: 100%;}
+ul.ruta-producto{display:flex;list-style:none;background-color:transparent;overflow: hidden;color: #fff;margin: 0rem auto;text-align: center;padding: 2rem 3rem;}
+ul.ruta-producto li{display:inline;font-size:14px;font-weight:400;}
+ul.ruta-producto li+li:before{padding: .5rem .7rem;color:rgba(255, 255, 255, 0.623);content:"/";}
+ul.ruta-producto li a{color:#fff;text-decoration:none;}
+ul.ruta-producto li a:hover{text-decoration:none;background-color: #0000002c;border-radius: 5px;}
+
+/* Contenedor Polearas Personalizada */
+.contenedor-poleras-personalizados{padding: 4rem 0rem;width: 100%;max-width: 120rem;margin: auto;}
+
+/* Contenedor imagen */
+.contenedor-imagen-poleras-personalizada{width: 100%;}
+.contenedor-imagen-poleras-personalizada img{width: calc(100% - 3rem);padding: 2rem 1.5rem;}
+
+/* Contenedor descripcion */
+.contenedor-descripcion-poleras-personalizada{width: calc(100% - 3rem);padding: 2rem 1.5rem;}
+.contenedor-descripcion-poleras-personalizada h2{font-size: 3rem;text-align: left;margin: 0rem;}
+.precio-poleras-personalizado{font-size: 2.4rem;font-weight: 800;margin-top: 5rem;}
+.precio-poleras-personalizado s{font-weight: normal;opacity: .6;}
+.subtitulo-descripcion-poleras-personalizada{margin-top: 3rem;} 
+.btn-crear-diseno{background-color: #a139b0;color: #fff;padding: 1.5rem 2rem;margin-top: 3rem;display: block;width: 15rem;text-align: center;
+                border-radius: 1rem;margin-bottom: 5rem;}
+.contenedor-descripcion-poleras-personalizada ul{list-style: unset;margin-left: 2rem;}
+.contenedor-descripcion-poleras-personalizada li{margin-bottom: .5rem;}
+
+@media only screen and (min-width: 900px) {
+    /** Ruta Producto **/
+    .contenedor-ruta-producto{width: 100%;}
+    ul.ruta-producto{width: 100%;max-width: 120rem;}
+
+    /* Contenedor Poleras Personalizada */
+    .contenedor-poleras-personalizados{display: flex;}
+
+    /* COntenedor imagen */
+    .contenedor-imagen-poleras-personalizada{width: 50%;}
+    .contenedor-imagen-poleras-personalizada img{width: alc(100% - 3rem);}
+
+    /* Contenedor descripcion */
+    .contenedor-descripcion-poleras-personalizada{width: 50%;}
+    .contenedor-descripcion-poleras-personalizada h2{font-size: 3.5rem;}
+}
+</style>
+{% endblock css %}
+
+
+{% block content %}
+<main>
+
+<div class="contenedor-ruta-producto">
+    <ul class="ruta-producto">
+        <li><a href="">PRODUCTO</a></li>
+        <li><a href="">DISEÑO + IMPRESIÓN EN OBJETOS</a></li>
+    </ul>
+</div>
+
+<div class="contenedor-poleras-personalizados">
+    <div class="contenedor-imagen-poleras-personalizada">
+        <img src="https://printful.s3.amazonaws.com/upload/lpg-image-upload/08/08fe37a12a5eb1b2a6a2769e769e8db7" alt="">
+    </div>
+    <div class="contenedor-descripcion-poleras-personalizada">
+        <h2>SOLICITA TU DISEÑO PERSONALIZADO + LA IMPRESIÓN EN OBJETOS</h2>
+        <div class="precio-poleras-personalizado" > <s>S/ 120.00</s>  S/ 89.00</div>
+        <div class="subtitulo-descripcion-poleras-personalizada">Personaliza tu diseño con los mejores diseñadores, capaces de realizar tu diseño anhelado.</div>
+        
+        {% if user.username %}
+            <a href="{% url 'solicitar_cita' %}" class="btn-crear-diseno">SOLICITAR DISEÑO</a>
+        {% else %}
+            <a href="{% url 'registrarse' %}" class="btn-crear-diseno">SOLICITAR DISEÑO</a>
+        {% endif %}
+        
+        <h4>Pasos para lograr conseguir tu diseño anhelado.</h4>
+        <ul>
+            <li>Registrarse o iniciar sesión</li>
+            <li>Darle click en el boton de arriba de crear diseño</li>
+            <li>Rellenar el formulario presentado</li>
+            <li>Pautiar una hora para contactarse con el diseñador</li>
+            <li>Culminado la cita online con el diseñador obtendras tu diseño anhelado</li>
+        </ul>
+    </div>
+</div>
+
+</main>
+{% endblock content %}

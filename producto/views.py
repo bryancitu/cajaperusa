@@ -20,6 +20,23 @@ class PersonalizarProductoView(TemplateView):
     pass
 
 
+class CualquierTipoDisenoView(TemplateView):
+    template_name = "producto/cualquier_tipo_diseno.html"
+    pass
+
+class DisenoImpresionPapelView(TemplateView):
+    template_name = "producto/diseno_impresion_papel.html"
+    pass
+
+class DisenoImpresionObjetoView(TemplateView):
+    template_name = "producto/diseno_impresion_objeto.html"
+    pass
+
+class ImpresionObjetoView(TemplateView):
+    template_name = "producto/impresion_objeto.html"
+    pass
+
+
 class SolicitarCitaView(TemplateView):
     template_name = "producto/solicitar_cita.html"
     

@@ -82,8 +82,8 @@
 
         .accordion-sidebar-admin {cursor: pointer;padding: 1rem;background-color: black;color: #ffffffcc;align-self: center;margin-bottom: .5rem;border:none;border-top: .1rem solid rgba(119, 119, 119, 0.6);
                                 text-align: left;outline: none;font-size: 1.5rem;transition: 0.4s;}
-        .accordion-sidebar-admin:after {content: '\003E';color: #ffffffcc;font-weight: bold;float: right;font-size: 1.8rem;right: 5rem;}
-        .active-sidebar-admin:after {content: "\02C5";color: #fff;}
+        .accordion-sidebar-admin:after {content: '\003E';color: #ffffffcc;font-weight: bold;float: right;font-size: 1.4rem;right: 5rem;}
+        .active-sidebar-admin:after {content: "\02C5";color: #ffffffcc;}
         .panel_sidebar_admin {background-color: black;max-height: 0;overflow: hidden;transition: max-height 0.2s ease-out;display: flex;flex-direction: column;}
         .panel_sidebar_admin a{color: #C2C7D0;align-self: center;font-size: 1.5rem;display: flex;border-radius: .5rem!important;padding-left: 3rem;}
         .panel_sidebar_admin a:hover{background-color: rgba(255,255,255,0.2);color: #fff!important;}
@@ -134,11 +134,19 @@
             .header-desktop h3{margin: 1.2rem 0rem;color: #fff;}
             .contenedor-header{max-width: 120rem;margin: auto;display: flex;justify-content: space-between;padding: 1rem 3rem;}
 
-            .header-left{display: flex;color: #fff;width: 28rem;justify-content: space-between;}
+            .header-left{display: flex;color: #fff;width: 46rem;justify-content: space-between;}
             .header-left a{color: #fff;}
             .header-left h3{color: #fff;display: flex;align-self: center;}
             .opciones-navbar-desktop{display: flex;color: #fff;border: none;}
             .opciones-navbar-desktop a{border: none;margin: 0rem;display: flex;align-self: center;}
+
+            .contenedor-quehacemos-opciones{position: relative;display: flex;justify-items: center;}
+            .accordion-sidebar-admin{width: 14.5rem;justify-content: space-between;}
+            .panel_sidebar_admin{position: absolute;z-index: 2;bottom: -18rem;justify-items: inherit;border: .2rem solid #ffffff33;border-radius: .5rem;padding: 2rem 1rem;display: none;}
+            .contenedor-quehacemos-opciones:hover .panel_sidebar_admin{display: block;max-height: max-content;width: 25rem;}
+            .contenedor-quehacemos-opciones:hover .accordion-sidebar-admin:after {content: "\02C5";color: #ffffffcc;}
+            .panel_sidebar_admin a{padding: 1rem ;}
+            .panel_sidebar_admin a:hover{background-color: #a139b0;}
 
             .header-right{display: flex;width: 48rem;justify-content: space-between;}
             .header-right span{display: flex;display: flex;align-self: center;margin-left: 1rem;}
@@ -210,14 +218,13 @@
                 <i class="fa fa-search" aria-hidden="true"></i>
             </div>
 			<a href="{% url 'home' %}" class="cajaperusa"> INICIO</a>
-			<a href="" class="cajaperusa"> SOBRE CAPERUSA</a>
 			<a class="accordion-sidebar-admin"> ¿QUÉ HACEMOS?</a>
 				<div class="panel_sidebar_admin">
-					<a href=""><span> Polos Personalizados</span></a>
-					<a href=""><span> Concursos</span></a>
-					<a href=""><span> Curso online</span></a>
+                    <a href=""><span> Cualquier tipo de diseños</span></a>
+                    <a href=""><span> Diseño + Impresión en papel</span></a>
+                    <a href=""><span> Diseño + Impresión en objetos</span></a>
+                    <a href=""><span> Impresión de diseños en objetos</span></a>
 				</div>
-			<a href="" class="cajaperusa"> BLOG</a>
 			<a href="" class="cajaperusa"> TIENDA</a>
 			<a href="" class="cajaperusa"> ACCEDER</a>
 		</div>
@@ -231,7 +238,17 @@
             <h3><b>CAJAPERUSA</b></h3>
             <nav class="opciones-navbar-desktop">
                 <a href="{% url 'home' %}" class="cajaperusa"> INICIO</a>
+                <div class="contenedor-quehacemos-opciones">
+                    <a href="" class="accordion-sidebar-admin"> ¿QUÉ HACEMOS?</a>
+                    <div class="panel_sidebar_admin">
+                        <a href=""><span> Cualquier tipo de diseños</span></a>
+                        <a href=""><span> Diseño + Impresión en papel</span></a>
+                        <a href=""><span> Diseño + Impresión en objetos</span></a>
+                        <a href=""><span> Impresión de diseños en objetos</span></a>
+                    </div>
+                </div>
                 <a href="{% url 'personalizar_producto' %}" class="cajaperusa"> TIENDA</a>
+
             </nav>
         </div>
         <div class="header-right">

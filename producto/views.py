@@ -10,7 +10,7 @@ import datetime
 import pytz
 
 from .forms import *
-from .models import DatosCita
+from .models import *
 from usuarios.models import Usuarios
 # Create your views here.
 
@@ -38,42 +38,20 @@ class ImpresionObjetoView(TemplateView):
     pass
 
 
-class SolicitarCitaView(TemplateView):
-    template_name = "producto/solicitar_cita.html"
-    
-    def get_context_data(self, **kwargs):
-        form = SolicitarCitaForm
-        kwargs['form'] = form
-        return kwargs
-        
-    def post(self, request, *args, **kwargs):
-        context = self.get_context_data(**kwargs)
-        user = Usuarios.objects.filter(id=self.request.user.id).first()
-        form = SolicitarCitaForm(request.POST)
-        if form.is_valid():
-            solicitud = form.save()
-            solicitud.usuario = user
-            solicitud.save()
-            messages.success(request, 'Envio de Solicitud de cita correctamente!')
-            return redirect('home')
-        context['form'] = form
-        messages.error(request, 'Completar el formulario correctamente!')
-        return self.render_to_response(context)
-
 class HistorialPagosVIew(TemplateView):
     template_name = "producto/historial_pagos.html"
-    
-    def get_context_data(self, **kwargs):
-        user = Usuarios.objects.filter(id=self.request.user.id).first()
-        solicitudes = DatosCita.objects.filter(usuario = user)
-        cantidad_solicitud = DatosCita.objects.filter(usuario = user).count()
-        kwargs['solicitudes'] = solicitudes
-        kwargs['cantidad_solicitud'] = cantidad_solicitud
-        return kwargs
+    pass
+    # def get_context_data(self, **kwargs):
+    #     user = Usuarios.objects.filter(id=self.request.user.id).first()
+    #     solicitudes = DatosCita.objects.filter(usuario = user)
+    #     cantidad_solicitud = DatosCita.objects.filter(usuario = user).count()
+    #     kwargs['solicitudes'] = solicitudes
+    #     kwargs['cantidad_solicitud'] = cantidad_solicitud
+    #     return kwargs
 
 
 # Solicitudes de los 4
-class SolicitudCualquierTipoDisenoView(TemplateView):
+class SolicitudCualquierTipoDisenoView(LoginRequiredMixin,TemplateView):
     template_name = "producto/solicitud_cualquier_tipo_diseno.html"
     
     def get_context_data(self, **kwargs):
@@ -95,16 +73,70 @@ class SolicitudCualquierTipoDisenoView(TemplateView):
         messages.error(request, 'Completar el formulario correctamente!')
         return self.render_to_response(context)
 
-class SolicitudDisenoImpresionPapelView(TemplateView):
+class SolicitudDesignImpresionPapelView(LoginRequiredMixin,TemplateView):
     template_name = "producto/solicitud_diseno_impresion_papel.html"
-    pass
+    
+    def get_context_data(self, **kwargs):
+        form = SolicitudDesignImpresionPapelForm
+        kwargs['form'] = form
+        return kwargs
+        
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        user = Usuarios.objects.filter(id=self.request.user.id).first()
+        form = SolicitudDesignImpresionPapelForm(request.POST)
+        if form.is_valid():
+            solicitud = form.save()
+            solicitud.usuario = user
+            solicitud.save()
+            messages.success(request, 'Envio de Solicitud de cita correctamente!')
+            return redirect('home')
+        context['form'] = form
+        messages.error(request, 'Completar el formulario correctamente!')
+        return self.render_to_response(context)
 
-class SolicitudDisenoImpresionObjetoView(TemplateView):
+class SolicitudDesignImpresionObjetoView(LoginRequiredMixin,TemplateView):
     template_name = "producto/solicitud_diseno_impresion_objeto.html"
-    pass
+    
+    def get_context_data(self, **kwargs):
+        form = SolicitudDesignImpresionObjetoForm
+        kwargs['form'] = form
+        return kwargs
+        
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        user = Usuarios.objects.filter(id=self.request.user.id).first()
+        form = SolicitudDesignImpresionObjetoForm(request.POST)
+        if form.is_valid():
+            solicitud = form.save()
+            solicitud.usuario = user
+            solicitud.save()
+            messages.success(request, 'Envio de Solicitud de cita correctamente!')
+            return redirect('home')
+        context['form'] = form
+        messages.error(request, 'Completar el formulario correctamente!')
+        return self.render_to_response(context)
 
 class SolicitudImpresionObjetoView(TemplateView):
     template_name = "producto/solicitud_impresion_objeto.html"
-    pass
+    
+    def get_context_data(self, **kwargs):
+        form = SolicitudImpresionObjetoForm
+        kwargs['form'] = form
+        return kwargs
+        
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        user = Usuarios.objects.filter(id=self.request.user.id).first()
+        form = SolicitudImpresionObjetoForm(request.POST)
+        if form.is_valid():
+            solicitud = form.save()
+            solicitud.usuario = user
+            solicitud.save()
+            messages.success(request, 'Envio de Solicitud de cita correctamente!')
+            return redirect('home')
+        context['form'] = form
+        messages.error(request, 'Completar el formulario correctamente!')
+        return self.render_to_response(context)
 
     

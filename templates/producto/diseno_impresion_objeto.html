@@ -74,7 +74,7 @@ ul.ruta-producto li a:hover{text-decoration:none;background-color: #0000002c;bor
         <div class="subtitulo-descripcion-poleras-personalizada">Personaliza tu diseño con los mejores diseñadores, capaces de realizar tu diseño anhelado.</div>
         
         {% if user.username %}
-            <a href="{% url 'solicitar_cita' %}" class="btn-crear-diseno">SOLICITAR DISEÑO</a>
+            <a href="{% url 'solicitud_de_diseño_mas_impresión_objeto' %}" class="btn-crear-diseno">SOLICITAR DISEÑO</a>
         {% else %}
             <a href="{% url 'registrarse' %}" class="btn-crear-diseno">SOLICITAR DISEÑO</a>
         {% endif %}

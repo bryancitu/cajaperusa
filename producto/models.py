@@ -36,7 +36,9 @@ class SolicitudDiseno(BaseModel):
     formato_img                 = models.CharField('Formato de la Imagen:',max_length=50, choices=FORMATO)
     medio_comunicacion          = models.CharField('Medio de Comunicación:',max_length=50, choices=MEDIOS_COMUNICACION)
     descripcion_complementaria  = RichTextField('Descripción Complementaria:',blank=True,)
-    design                      = models.ForeignKey(Design, on_delete=models.CASCADE, blank=True, null=True) 
+    design                      = models.ForeignKey(Design, on_delete=models.CASCADE, blank=True, null=True)
+    precio                      = models.DecimalField('Precio', max_digits=5, decimal_places=2,blank=True, null=True)
+    pagado                      = models.BooleanField(default=False)
 
 
     class Meta:
@@ -83,7 +85,9 @@ class SolicitudDesignImpresionPapel(BaseModel):
     type_paper                  = models.CharField('Tipo de papel:',max_length=50, choices=TYPE_PAPER)
     medio_comunicacion          = models.CharField('Medio de Comunicación:',max_length=50, choices=MEDIOS_COMUNICACION)
     descripcion_complementaria  = RichTextField('Descripción Complementaria:',blank=True,)
-    design                      = models.ForeignKey(Design, on_delete=models.CASCADE, blank=True, null=True) 
+    design                      = models.ForeignKey(Design, on_delete=models.CASCADE, blank=True, null=True)
+    precio                      = models.DecimalField('Precio', max_digits=5, decimal_places=2,blank=True, null=True)
+    pagado                      = models.BooleanField(default=False)
 
 
     class Meta:
@@ -106,7 +110,9 @@ class SolicitudDesignImpresionObjeto(BaseModel):
     object_print                = models.CharField('Objeto a Imprimir:', max_length=1000)
     medio_comunicacion          = models.CharField('Medio de Comunicación:',max_length=50, choices=MEDIOS_COMUNICACION)
     descripcion_complementaria  = RichTextField('Descripción Complementaria:',blank=True,)
-    design                      = models.ForeignKey(Design, on_delete=models.CASCADE, blank=True, null=True) 
+    design                      = models.ForeignKey(Design, on_delete=models.CASCADE, blank=True, null=True)
+    precio                      = models.DecimalField('Precio', max_digits=5, decimal_places=2,blank=True, null=True)
+    pagado                      = models.BooleanField(default=False)
 
 
     class Meta:
@@ -130,6 +136,8 @@ class SolicitudImpresionObjeto(BaseModel):
     medio_comunicacion          = models.CharField('Medio de Comunicación:',max_length=50, choices=MEDIOS_COMUNICACION)
     descripcion_complementaria  = RichTextField('Descripción Complementaria:',blank=True,)
     design                      = models.ForeignKey(Design, on_delete=models.CASCADE, blank=True, null=True) 
+    precio                      = models.DecimalField('Precio', max_digits=5, decimal_places=2,blank=True, null=True)
+    pagado                      = models.BooleanField(default=False)
 
 
     class Meta:

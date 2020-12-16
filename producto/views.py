@@ -54,6 +54,30 @@ class HistorialPagosVIew(LoginRequiredMixin,TemplateView):
         ctd_design_objeto       = SolicitudDesignImpresionObjeto.objects.filter(usuario = user).count()
         ctd_print_objeto        = SolicitudImpresionObjeto.objects.filter(usuario = user).count()
 
+        monto_cd = 0
+        monto_dp = 0
+        monto_do = 0
+        monto_po = 0
+
+        for solicitud in SolicitudDiseno.objects.filter(usuario = user):
+            if solicitud.precio:
+                monto_cd += solicitud.precio
+
+        for solicitud in SolicitudDesignImpresionPapel.objects.filter(usuario = user):
+            if solicitud.precio:
+                monto_dp += solicitud.precio
+
+        for solicitud in SolicitudDesignImpresionObjeto.objects.filter(usuario = user):
+            if solicitud.precio:
+                monto_do += solicitud.precio
+
+        for solicitud in SolicitudImpresionObjeto.objects.filter(usuario = user):
+            if solicitud.precio:
+                monto_po += solicitud.precio
+                
+
+        print(monto_cd)
+
         kwargs['sld_cualquier_design']  = sld_cualquier_design
         kwargs['sld_design_papel']      = sld_design_papel
         kwargs['sld_design_objeto']     = sld_design_objeto
@@ -63,6 +87,14 @@ class HistorialPagosVIew(LoginRequiredMixin,TemplateView):
         kwargs['ctd_design_papel']      = ctd_design_papel
         kwargs['ctd_design_objeto']     = ctd_design_objeto
         kwargs['ctd_print_objeto']      = ctd_print_objeto
+
+        kwargs['monto_cd'] = monto_cd
+        kwargs['monto_dp'] = monto_dp
+        kwargs['monto_do'] = monto_do
+        kwargs['monto_po'] = monto_po
+
+        kwargs['ctd_total']   = ctd_cualquier_design + ctd_design_papel + ctd_design_objeto + ctd_print_objeto
+        kwargs['monto_total'] = monto_cd + monto_dp + monto_do + monto_po
         return kwargs
 
 

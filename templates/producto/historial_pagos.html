@@ -12,11 +12,23 @@ main{padding: 0rem 2rem;max-width: 120rem;margin: auto;margin-bottom: 5rem;}
 p{margin: .5rem auto;}
 li{margin-bottom: .3rem;}
 ul{padding: 1.5rem 1rem;overflow: hidden;}
+
+td, th {border: .1rem solid #ccc;text-align: left;font-size: 1.2rem;}
+table {border-collapse: collapse;width: 100%;}
+th, td {padding: 1.5rem;}
+th{background-color: #a139b0;color: #fff;}
+.realizar-pago{text-align: center;font-size: 1.6rem;background-color: #a139b0;color: #fff;}
+
 .ul-1{background-color: #2696f16e;color: #004e8d;}
 .ul-2{background-color: #fd980086;color: #7a4a02;}
 .ul-3{background-color: #4caf4f8c;color: #2b642d;}
 .ul-4{background-color: #f7e11f86;color: #615700;}
 .my-hr:last-of-type{display: none;}
+
+@media only screen and (min-width: 900px) {
+  table, td, th{font-size: 1.6rem;}
+  .realizar-pago{font-size: 2rem;}
+}
 </style>
 {% endblock css %}
     
@@ -25,7 +37,46 @@ ul{padding: 1.5rem 1rem;overflow: hidden;}
 <main>
   <h1>Lista de mis Solicitudes</h1>
   
+  <table>
+    <tr>
+      <th>Solicitudes</th>
+      <th>Cantidad</th>
+      <th>Monto restante total</th>
+    </tr>
+    <tr>
+      <td>Cualquier tipo de diseño</td>
+      <td>{{ctd_cualquier_design}}</td>
+      <td>S/ {{monto_cd}}</td>
+    </tr>
+    <tr>
+      <td>Diseño + impresión en papel</td>
+      <td>{{ctd_design_papel}}</td>
+      <td>S/ {{monto_dp}}</td>
+    </tr>
+    <tr>
+      <td>Diseñó + impresiónen objetos</td>
+      <td>{{ctd_design_objeto}}</td>
+      <td>S/ {{monto_do}}</td>
+    </tr>
+    <tr>
+      <td>Impresión en cualquier objeto</td>
+      <td>{{ctd_print_objeto}}</td>
+      <td>S/ {{monto_po}}</td>
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td>{{ctd_total}}</td>
+      <td>S/ {{monto_total}}</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none;"></td>
+      <td style="border: none;"></td>
+      <td class="realizar-pago"><a href="" style="color: #fff;">Realizar el pago <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> </a></td>
+    </tr>
+  </table>
+
   
+
   {% if ctd_cualquier_design != 0 %}
     <h4>Solicitudes de Cualquier Tipo de Diseño: {{ctd_cualquier_design}}</h4>
     {% for sd in sld_cualquier_design %}

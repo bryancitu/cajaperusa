@@ -7,188 +7,121 @@
 
 
 {% block css %}
-
+<style>
+main{padding: 0rem 2rem;max-width: 120rem;margin: auto;margin-bottom: 5rem;}
+p{margin: .5rem auto;}
+li{margin-bottom: .3rem;}
+ul{padding: 1.5rem 1rem;overflow: hidden;}
+.ul-1{background-color: #2696f16e;color: #004e8d;}
+.ul-2{background-color: #fd980086;color: #7a4a02;}
+.ul-3{background-color: #4caf4f8c;color: #2b642d;}
+.ul-4{background-color: #f7e11f86;color: #615700;}
+.my-hr:last-of-type{display: none;}
+</style>
 {% endblock css %}
     
 
 {% block content %}
-<style>
-    * {
-      box-sizing: border-box;
-    }
+<main>
+  <h1>Lista de mis Solicitudes</h1>
+  
+  
+  {% if ctd_cualquier_design != 0 %}
+    <h4>Solicitudes de Cualquier Tipo de Diseño: {{ctd_cualquier_design}}</h4>
+    {% for sd in sld_cualquier_design %}
+      <ul class="ul-1">
+        <li><b> Fecha de Cita: </b>{{ sd.fecha_cita|date:"SHORT_DATE_FORMAT" }} {{ sd.fecha_cita|time:"h:i a" }} </li>
+        <li><b> Diseñador: </b>{{ sd.design }}</li>
+        <li><b> Descripcion: </b>{% autoescape off %} {{ sd.descripcion_complementaria|linebreaks }} {% endautoescape %}  </li>
+        
+        {% if sd.medio_comunicacion == "Zoom" %}
+          <li><b>Link de Zoom:</b> <a href="{{sd.design.url_zoom}}" target="_blank">{{sd.design.url_zoom}}</a></li>
+        {% endif %}
+        {% if sd.medio_comunicacion == "WhatsApp" %}
+          <li><b>Link de WhatsApp:</b> <a href="{{sd.design.url_wsp}}" target="_blank">{{sd.design.url_wsp}}</a></li>
+        {% endif %}
+        {% if sd.medio_comunicacion == "FB-messenger" %}
+          <li><b>Link de FB-messenger:</b> <a href="{{sd.design.url_fb_messenger}}" target="_blank">{{sd.design.url_fb_messenger}}</a></li>
+        {% endif %}
+                
+      </ul>
+    {% endfor %}
+  {% endif %}
     
-    .row {
-      display: -ms-flexbox; /* IE10 */
-      display: flex;
-      -ms-flex-wrap: wrap; /* IE10 */
-      flex-wrap: wrap;
-      margin: 0 -16px;
-    }
+  
+  {% if ctd_design_papel != 0  %}
+    <h4>Solicitudes de Diseño + Impresión en Papel: {{ctd_design_papel}}</h4>
+    {% for sdp in sld_design_papel %}
+      <ul class="ul-2">
+        <li><b> Fecha de Cita:</b> {{ sdp.fecha_cita|date:"SHORT_DATE_FORMAT" }} {{ sdp.fecha_cita|time:"h:i a" }} </li>
+        <li><b> Diseñador: </b>{{ sdp.design }}</li>
+        <li><b> Descripcion: </b>{% autoescape off %} {{ sdp.descripcion_complementaria|linebreaks }} {% endautoescape %}  </li>
+
+        {% if sdp.medio_comunicacion == "Zoom" %}
+          <li><b>Link de Zoom:</b> <a href="{{sdp.design.url_zoom}}" target="_blank">{{sdp.design.url_zoom}}</a></li>
+        {% endif %}
+        {% if sdp.medio_comunicacion == "WhatsApp" %}
+          <li><b>Link de WhatsApp:</b> <a href="{{sdp.design.url_wsp}}" target="_blank">{{sdp.design.url_wsp}}</a></li>
+        {% endif %}
+        {% if sdp.medio_comunicacion == "FB-messenger" %}
+          <li><b>Link de FB-messenger:</b> <a href="{{sdp.design.url_fb_messenger}}" target="_blank">{{sdp.design.url_fb_messenger}}</a></li>
+        {% endif %}
+
+      </ul>
+    {% endfor %}    
+  {% endif %}
     
-    .col-25 {
-      -ms-flex: 25%; /* IE10 */
-      flex: 25%;
-    }
+  
+  {% if ctd_design_objeto != 0 %}
+    <h4>Solicitudes de Diseño + Impresión en Objetos: {{ctd_design_objeto}}</h4>
+    {% for sdo in sld_design_objeto %}
+      <ul class="ul-3">
+        <li><b> Fecha de Cita:</b> {{ sdo.fecha_cita|date:"SHORT_DATE_FORMAT" }} {{ sdo.fecha_cita|time:"h:i a" }} </li>
+        <li><b> Diseñador: </b>{{ sdo.design }}</li>
+        <li><b> Descripcion: </b>{% autoescape off %} {{ sdo.descripcion_complementaria|linebreaks }} {% endautoescape %} </li>
+        
+        {% if sdo.medio_comunicacion == "Zoom" %}
+          <li><b>Link de Zoom:</b> <a href="{{sdo.design.url_zoom}}" target="_blank">{{sdo.design.url_zoom}}</a></li>
+        {% endif %}
+        {% if sdo.medio_comunicacion == "WhatsApp" %}
+          <li><b>Link de WhatsApp:</b> <a href="{{sdo.design.url_wsp}}" target="_blank">{{sdo.design.url_wsp}}</a></li>
+        {% endif %}
+        {% if sdo.medio_comunicacion == "FB-messenger" %}
+          <li><b>Link de FB-messenger:</b> <a href="{{sdo.design.url_fb_messenger}}" target="_blank">{{sdo.design.url_fb_messenger}}</a></li>
+        {% endif %}
+
+      </ul>
+    {% endfor %}    
+  {% endif %}
     
-    .col-50 {
-      -ms-flex: 50%; /* IE10 */
-      flex: 50%;
-    }
+  
+  {% if ctd_print_objeto != 0  %}
+    <h4>Solicitudes de Impresión en Objetos: {{ctd_print_objeto}}</h4>
+    {% for spo in sld_print_objeto %}
+      <ul class="ul-4" >
+        <li><b> Fecha de Cita:</b> {{ spo.fecha_cita|date:"SHORT_DATE_FORMAT" }} {{ spo.fecha_cita|time:"h:i a" }} </li>
+        <li><b> Diseñador: </b>{{ spo.design }}</li>
+        <li><b> Descripcion: </b>{% autoescape off %} {{ spo.descripcion_complementaria|linebreaks }} {% endautoescape %} </li>
+        
+        {% if spo.medio_comunicacion == "Zoom" %}
+          <li><b>Link de Zoom:</b> <a href="{{spo.design.url_zoom}}" target="_blank">{{spo.design.url_zoom}}</a></li>
+        {% endif %}
+        {% if spo.medio_comunicacion == "WhatsApp" %}
+          <li><b>Link de WhatsApp:</b> <a href="{{spo.design.url_wsp}}" target="_blank">{{spo.design.url_wsp}}</a></li>
+        {% endif %}
+        {% if spo.medio_comunicacion == "FB-messenger" %}
+          <li><b>Link de FB-messenger:</b> <a href="{{spo.design.url_fb_messenger}}" target="_blank">{{spo.design.url_fb_messenger}}</a></li>
+        {% endif %}
+
+      </ul>
+    {% endfor %}    
+  {% endif %}
     
-    .col-75 {
-      -ms-flex: 75%; /* IE10 */
-      flex: 75%;
-    }
-    
-    .col-25,
-    .col-50,
-    .col-75 {
-      padding: 0 16px;
-    }
-    
-    .container {
-      background-color: #f2f2f2;
-      padding: 5px 20px 15px 20px;
-      border: 1px solid lightgrey;
-      border-radius: 3px;
-    }
-    
-    input[type=text] {
-      width: 100%;
-      margin-bottom: 20px;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-    }
-    
-    label {
-      margin-bottom: 10px;
-      display: block;
-    }
-    
-    .icon-container {
-      margin-bottom: 20px;
-      padding: 7px 0;
-      font-size: 24px;
-    }
-    
-    .btn {
-      background-color: #a139b0;
-      color: white;
-      padding: 12px;
-      margin: 10px 0;
-      border: none;
-      width: 100%;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 17px;
-    }
-    
-    .btn:hover {
-      background-color: #a139b0;
-    }
-    
-    a {
-      color: #2196F3;
-    }
-    
-    hr {
-      border: 1px solid lightgrey;
-    }
-    
-    span.price {
-      float: right;
-      color: grey;
-    }
-    
-    /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
-    @media (max-width: 800px) {
-      .row {
-        flex-direction: column-reverse;
-      }
-      .col-25 {
-        margin-bottom: 20px;
-      }
-    }
-    </style>
-    </head>
-    <body>
-    <br>
-    <div class="row">
-      <div class="col-75">
-        <div class="container">
-          <form action="/action_page.php">
-          
-            <div class="row">
-              <div class="col-50">
-                <h3>Billing Address</h3>
-                <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
-                <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                <input type="text" id="email" name="email" placeholder="john@example.com">
-                <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-                <label for="city"><i class="fa fa-institution"></i> City</label>
-                <input type="text" id="city" name="city" placeholder="New York">
-    
-                <div class="row">
-                  <div class="col-50">
-                    <label for="state">State</label>
-                    <input type="text" id="state" name="state" placeholder="NY">
-                  </div>
-                  <div class="col-50">
-                    <label for="zip">Zip</label>
-                    <input type="text" id="zip" name="zip" placeholder="10001">
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-50">
-                <h3>Payment</h3>
-                <label for="fname">Accepted Cards</label>
-                <div class="icon-container">
-                  <i class="fa fa-cc-visa" style="color:navy;"></i>
-                  <i class="fa fa-cc-amex" style="color:blue;"></i>
-                  <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                  <i class="fa fa-cc-discover" style="color:orange;"></i>
-                </div>
-                <label for="cname">Name on Card</label>
-                <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-                <label for="ccnum">Credit card number</label>
-                <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-                <label for="expmonth">Exp Month</label>
-                <input type="text" id="expmonth" name="expmonth" placeholder="September">
-                <div class="row">
-                  <div class="col-50">
-                    <label for="expyear">Exp Year</label>
-                    <input type="text" id="expyear" name="expyear" placeholder="2018">
-                  </div>
-                  <div class="col-50">
-                    <label for="cvv">CVV</label>
-                    <input type="text" id="cvv" name="cvv" placeholder="352">
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-            <label>
-              <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-            </label>
-            <input type="submit" value="Continue to checkout" class="btn">
-          </form>
-        </div>
-      </div>
-      <div class="col-25">
-        <div class="container">
-          <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>{{cantidad_solicitud}}</b></span></h4>
-          
-          {% for s in solicitudes %}
-            <p><a href="#">{{s.created_at}}</a> <span class="price">S/ 85</span></p>
-          {% endfor %}
-          <hr>
-          <p>Total <span class="price" style="color:black"><b>S/ {{user.monto_pagar}}</b></span></p>
-        </div>
-      </div>
-    </div>
+</main>
+
+  
+  
+  
+
 {% endblock content %}
     

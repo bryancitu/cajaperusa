@@ -38,16 +38,32 @@ class ImpresionObjetoView(TemplateView):
     pass
 
 
-class HistorialPagosVIew(TemplateView):
+class HistorialPagosVIew(LoginRequiredMixin,TemplateView):
     template_name = "producto/historial_pagos.html"
     pass
-    # def get_context_data(self, **kwargs):
-    #     user = Usuarios.objects.filter(id=self.request.user.id).first()
-    #     solicitudes = DatosCita.objects.filter(usuario = user)
-    #     cantidad_solicitud = DatosCita.objects.filter(usuario = user).count()
-    #     kwargs['solicitudes'] = solicitudes
-    #     kwargs['cantidad_solicitud'] = cantidad_solicitud
-    #     return kwargs
+    def get_context_data(self, **kwargs):
+        user = Usuarios.objects.filter(id=self.request.user.id).first()
+
+        sld_cualquier_design    = SolicitudDiseno.objects.filter(usuario = user)
+        sld_design_papel        = SolicitudDesignImpresionPapel.objects.filter(usuario = user)
+        sld_design_objeto       = SolicitudDesignImpresionObjeto.objects.filter(usuario = user)
+        sld_print_objeto        = SolicitudImpresionObjeto.objects.filter(usuario = user)
+
+        ctd_cualquier_design    = SolicitudDiseno.objects.filter(usuario = user).count()
+        ctd_design_papel        = SolicitudDesignImpresionPapel.objects.filter(usuario = user).count()
+        ctd_design_objeto       = SolicitudDesignImpresionObjeto.objects.filter(usuario = user).count()
+        ctd_print_objeto        = SolicitudImpresionObjeto.objects.filter(usuario = user).count()
+
+        kwargs['sld_cualquier_design']  = sld_cualquier_design
+        kwargs['sld_design_papel']      = sld_design_papel
+        kwargs['sld_design_objeto']     = sld_design_objeto
+        kwargs['sld_print_objeto']      = sld_print_objeto
+
+        kwargs['ctd_cualquier_design']  = ctd_cualquier_design
+        kwargs['ctd_design_papel']      = ctd_design_papel
+        kwargs['ctd_design_objeto']     = ctd_design_objeto
+        kwargs['ctd_print_objeto']      = ctd_print_objeto
+        return kwargs
 
 
 # Solicitudes de los 4

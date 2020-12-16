@@ -38,6 +38,6 @@ class SolicitudImpresionObjetoForm(forms.ModelForm):
     design                     = forms.ModelChoiceField(label='Elege tu Diseñador',queryset=Design.objects.all(),widget=forms.RadioSelect() )
 
     class Meta:
-        model = SolicitudDesignImpresionObjeto
+        model = SolicitudImpresionObjeto
         fields = ('fecha_cita','object_print','medio_comunicacion','design','descripcion_complementaria')
 

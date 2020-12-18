@@ -11,23 +11,27 @@
 main{padding: 0rem 2rem;max-width: 120rem;margin: auto;margin-bottom: 5rem;}
 p{margin: .5rem auto;}
 li{margin-bottom: .3rem;}
-ul{padding: 1.5rem 1rem;overflow: hidden;}
+ul{margin: 0rem;}
+.ul-1, .ul-2, .ul-3,.ul-4{padding: 1.5rem 1rem;overflow: hidden;margin: 1.6rem 0rem;}
 
 td, th {border: .1rem solid #ccc;text-align: left;font-size: 1.2rem;}
 table {border-collapse: collapse;width: 100%;}
 th, td {padding: 1.5rem;}
 th{background-color: #a139b0;color: #fff;}
-.realizar-pago{text-align: center;font-size: 1.6rem;background-color: #a139b0;color: #fff;}
+.realizar-pago{text-align: center;font-size: 1.4rem;background-color: #a139b0;color: #fff;}
 
 .ul-1{background-color: #2696f16e;color: #004e8d;}
 .ul-2{background-color: #fd980086;color: #7a4a02;}
 .ul-3{background-color: #4caf4f8c;color: #2b642d;}
 .ul-4{background-color: #f7e11f86;color: #615700;}
 .my-hr:last-of-type{display: none;}
+.contenedor-solicitud{font-size: 1.4rem;}
 
 @media only screen and (min-width: 900px) {
   table, td, th{font-size: 1.6rem;}
   .realizar-pago{font-size: 2rem;}
+
+  .contenedor-solicitud{display: flex;justify-content: space-between;font-size: 1.6rem;}
 }
 </style>
 {% endblock css %}
@@ -80,7 +84,8 @@ th{background-color: #a139b0;color: #fff;}
   {% if ctd_cualquier_design != 0 %}
     <h4>Solicitudes de Cualquier Tipo de Diseño: {{ctd_cualquier_design}}</h4>
     {% for sd in sld_cualquier_design %}
-      <ul class="ul-1">
+    <div class="contenedor-solicitud ul-1">
+      <ul>
         <li><b> Fecha de Cita: </b>{{ sd.fecha_cita|date:"SHORT_DATE_FORMAT" }} {{ sd.fecha_cita|time:"h:i a" }} </li>
         <li><b> Diseñador: </b>{{ sd.design }}</li>
         <li><b> Descripcion: </b>{% autoescape off %} {{ sd.descripcion_complementaria|linebreaks }} {% endautoescape %}  </li>
@@ -94,8 +99,20 @@ th{background-color: #a139b0;color: #fff;}
         {% if sd.medio_comunicacion == "FB-messenger" %}
           <li><b>Link de FB-messenger:</b> <a href="{{sd.design.url_fb_messenger}}" target="_blank">{{sd.design.url_fb_messenger}}</a></li>
         {% endif %}
-                
       </ul>
+      <ul>
+        {% if sd.precio == None %}
+          <li style="margin-top: 1.5rem;margin-right: 1.5rem;border: .1rem solid #004e8d;padding: .7rem 1rem;border-radius: .7rem;width: 4rem;"><a href="{% url 'editar_solicitud_cualquier_tipo_diseno' sd.id %}" style="color: #004e8d;">Editar</a></li>
+        {% else %}
+          <li>S/ {{sd.precio}}</li>            
+          {% if sd.pagado %}
+            <li>Cancelado</li>
+          {% else %}
+            <li>Por cancelar</li>
+          {% endif %}
+        {% endif %}
+      </ul>
+    </div>
     {% endfor %}
   {% endif %}
     
@@ -103,7 +120,8 @@ th{background-color: #a139b0;color: #fff;}
   {% if ctd_design_papel != 0  %}
     <h4>Solicitudes de Diseño + Impresión en Papel: {{ctd_design_papel}}</h4>
     {% for sdp in sld_design_papel %}
-      <ul class="ul-2">
+    <div class="contenedor-solicitud ul-2">
+      <ul>
         <li><b> Fecha de Cita:</b> {{ sdp.fecha_cita|date:"SHORT_DATE_FORMAT" }} {{ sdp.fecha_cita|time:"h:i a" }} </li>
         <li><b> Diseñador: </b>{{ sdp.design }}</li>
         <li><b> Descripcion: </b>{% autoescape off %} {{ sdp.descripcion_complementaria|linebreaks }} {% endautoescape %}  </li>
@@ -117,8 +135,20 @@ th{background-color: #a139b0;color: #fff;}
         {% if sdp.medio_comunicacion == "FB-messenger" %}
           <li><b>Link de FB-messenger:</b> <a href="{{sdp.design.url_fb_messenger}}" target="_blank">{{sdp.design.url_fb_messenger}}</a></li>
         {% endif %}
-
       </ul>
+      <ul>
+        {% if sdp.precio == None %}
+          <li style="margin-top: 1.5rem;margin-right: 1.5rem;border: .1rem solid #7a4a02;padding: .7rem 1rem;border-radius: .7rem;width: 4rem;"><a href="{% url 'editar_solicitud_de_diseño_mas_impresión_papel' sdp.id %}" style="color: #7a4a02;">Editar</a></li>
+        {% else %}
+          <li>S/ {{sdp.precio}}</li>            
+          {% if sdp.pagado %}
+            <li>Cancelado</li>
+          {% else %}
+            <li>Por cancelar</li>
+          {% endif %}
+        {% endif %}
+      </ul>
+    </div>
     {% endfor %}    
   {% endif %}
     
@@ -126,7 +156,8 @@ th{background-color: #a139b0;color: #fff;}
   {% if ctd_design_objeto != 0 %}
     <h4>Solicitudes de Diseño + Impresión en Objetos: {{ctd_design_objeto}}</h4>
     {% for sdo in sld_design_objeto %}
-      <ul class="ul-3">
+    <div class="contenedor-solicitud ul-3">
+      <ul>
         <li><b> Fecha de Cita:</b> {{ sdo.fecha_cita|date:"SHORT_DATE_FORMAT" }} {{ sdo.fecha_cita|time:"h:i a" }} </li>
         <li><b> Diseñador: </b>{{ sdo.design }}</li>
         <li><b> Descripcion: </b>{% autoescape off %} {{ sdo.descripcion_complementaria|linebreaks }} {% endautoescape %} </li>
@@ -140,8 +171,20 @@ th{background-color: #a139b0;color: #fff;}
         {% if sdo.medio_comunicacion == "FB-messenger" %}
           <li><b>Link de FB-messenger:</b> <a href="{{sdo.design.url_fb_messenger}}" target="_blank">{{sdo.design.url_fb_messenger}}</a></li>
         {% endif %}
-
       </ul>
+      <ul>
+        {% if sdo.precio == None %}
+          <li style="margin-top: 1.5rem;margin-right: 1.5rem;border: .1rem solid #2b642d;padding: .7rem 1rem;border-radius: .7rem;width: 4rem;"><a href="{% url 'editar_solicitud_de_diseño_mas_impresión_objeto' sdo.id %}" style="color: #2b642d;">Editar</a></li>
+        {% else %}
+          <li>S/ {{sdo.precio}}</li>            
+          {% if sdo.pagado %}
+            <li>Cancelado</li>
+          {% else %}
+            <li>Por cancelar</li>
+          {% endif %}
+        {% endif %}
+      </ul>
+    </div>
     {% endfor %}    
   {% endif %}
     
@@ -149,7 +192,8 @@ th{background-color: #a139b0;color: #fff;}
   {% if ctd_print_objeto != 0  %}
     <h4>Solicitudes de Impresión en Objetos: {{ctd_print_objeto}}</h4>
     {% for spo in sld_print_objeto %}
-      <ul class="ul-4" >
+    <div class="contenedor-solicitud ul-4">
+      <ul>
         <li><b> Fecha de Cita:</b> {{ spo.fecha_cita|date:"SHORT_DATE_FORMAT" }} {{ spo.fecha_cita|time:"h:i a" }} </li>
         <li><b> Diseñador: </b>{{ spo.design }}</li>
         <li><b> Descripcion: </b>{% autoescape off %} {{ spo.descripcion_complementaria|linebreaks }} {% endautoescape %} </li>
@@ -163,8 +207,20 @@ th{background-color: #a139b0;color: #fff;}
         {% if spo.medio_comunicacion == "FB-messenger" %}
           <li><b>Link de FB-messenger:</b> <a href="{{spo.design.url_fb_messenger}}" target="_blank">{{spo.design.url_fb_messenger}}</a></li>
         {% endif %}
-
       </ul>
+      <ul>
+        {% if spo.precio == None %}
+          <li style="margin-top: 1.5rem;margin-right: 1.5rem;border: .1rem solid #615700;padding: .7rem 1rem;border-radius: .7rem;width: 4rem;"><a href="{% url 'editar_solicitud_de_impresión_objeto' spo.id %}" style="color: #615700;">Editar</a></li>
+        {% else %}
+          <li>S/ {{spo.precio}}</li>            
+          {% if spo.pagado %}
+            <li>Cancelado</li>
+          {% else %}
+            <li>Por cancelar</li>
+          {% endif %}
+        {% endif %}
+      </ul>
+    </div>
     {% endfor %}    
   {% endif %}
     

@@ -14,4 +14,9 @@ urlpatterns = [
     path('solicitud-de-diseño-mas-impresión-papel', SolicitudDesignImpresionPapelView.as_view(), name="solicitud_de_diseño_mas_impresión_papel"),
     path('solicitud-de-diseño-mas-impresión-objeto', SolicitudDesignImpresionObjetoView.as_view(), name="solicitud_de_diseño_mas_impresión_objeto"),
     path('solicitud-de-impresión-objeto', SolicitudImpresionObjetoView.as_view(), name="solicitud_de_impresión_objeto"),
+    # paginas de editar solicitudes
+    path('editar-solicitud-de-diseño-personalizado/<pk>', EditarSolicitudCualquierTipoDisenoView.as_view(), name="editar_solicitud_cualquier_tipo_diseno"),
+    path('editar-solicitud-de-diseño-mas-impresión-papel/<pk>', EditarSolicitudDesignImpresionPapelView.as_view(), name="editar_solicitud_de_diseño_mas_impresión_papel"),
+    path('editar-solicitud-de-diseño-mas-impresión-objeto/<pk>', EditarSolicitudDesignImpresionObjetoView.as_view(), name="editar_solicitud_de_diseño_mas_impresión_objeto"),
+    path('editar-solicitud-de-impresión-objeto/<pk>', EditarSolicitudImpresionObjetoView.as_view(), name="editar_solicitud_de_impresión_objeto"),
 ]

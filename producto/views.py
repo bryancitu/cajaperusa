@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormView
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.conf import settings
 from django.contrib import messages
 from django.utils import timezone
@@ -60,19 +61,19 @@ class HistorialPagosVIew(LoginRequiredMixin,TemplateView):
         monto_po = 0
 
         for solicitud in SolicitudDiseno.objects.filter(usuario = user):
-            if solicitud.precio:
+            if solicitud.precio and not solicitud.pagado:
                 monto_cd += solicitud.precio
 
         for solicitud in SolicitudDesignImpresionPapel.objects.filter(usuario = user):
-            if solicitud.precio:
+            if solicitud.precio and not solicitud.pagado:
                 monto_dp += solicitud.precio
 
         for solicitud in SolicitudDesignImpresionObjeto.objects.filter(usuario = user):
-            if solicitud.precio:
+            if solicitud.precio and not solicitud.pagado:
                 monto_do += solicitud.precio
 
         for solicitud in SolicitudImpresionObjeto.objects.filter(usuario = user):
-            if solicitud.precio:
+            if solicitud.precio and not solicitud.pagado:
                 monto_po += solicitud.precio
                 
 
@@ -187,4 +188,27 @@ class SolicitudImpresionObjetoView(TemplateView):
         messages.error(request, 'Completar el formulario correctamente!')
         return self.render_to_response(context)
 
+# Editar las 4 tipos de solicitudes
+class EditarSolicitudCualquierTipoDisenoView(LoginRequiredMixin,UpdateView):
+    template_name = "producto/editar_solicitud_cualquier_tipo_diseno.html"
+    model = SolicitudDiseno
+    fields = ('fecha_cita','formato_img','medio_comunicacion','design','descripcion_complementaria')
+    success_url = reverse_lazy('historial_pagos')
     
+class EditarSolicitudDesignImpresionPapelView(LoginRequiredMixin,UpdateView):
+    template_name = "producto/editar_solicitud_cualquier_tipo_diseno.html"
+    model = SolicitudDesignImpresionPapel
+    fields = ('fecha_cita','size','type_print','type_paper','medio_comunicacion','design','descripcion_complementaria')
+    success_url = reverse_lazy('historial_pagos')
+
+class EditarSolicitudDesignImpresionObjetoView(LoginRequiredMixin,UpdateView):
+    template_name = "producto/editar_solicitud_cualquier_tipo_diseno.html"
+    model = SolicitudDesignImpresionObjeto
+    fields = ('fecha_cita','object_print','medio_comunicacion','design','descripcion_complementaria')
+    success_url = reverse_lazy('historial_pagos')
+
+class EditarSolicitudImpresionObjetoView(LoginRequiredMixin,UpdateView):
+    template_name = "producto/editar_solicitud_cualquier_tipo_diseno.html"
+    model = SolicitudImpresionObjeto
+    fields = ('fecha_cita','object_print','medio_comunicacion','design','descripcion_complementaria')
+    success_url = reverse_lazy('historial_pagos')

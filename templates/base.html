@@ -205,8 +205,12 @@
 <!-- Header Negro Mobile -->
 <header class="header-mobile" id="myHeader">
     <span class="btn-sidebar" id="btn_sidebar"> &#9776;</span>
-    <h3><b>CAJAPERUSA</b></h3>
-    <span class="btn-sidebar fa fa-shopping-cart"></span>
+    <h3><a href="{% url 'home' %}" style="color: #fff;"><b>CAJAPERUSA</b></a></h3>
+    {% if user.username %}
+        <a href="{% url 'historial_pagos' %}" class="btn-sidebar"><span class="fa fa-shopping-cart"></span></a>
+    {% else %}
+        <a href="{% url 'login' %}" class="btn-sidebar"><span class="fa fa-shopping-cart"></span></a>
+    {% endif %}
 </header>
 
 <nav class="sidebar contenedor-sidebar-cajaperusa"  id="contenedor_sidebar">
@@ -235,7 +239,7 @@
 <header class="header-desktop">
     <div class="contenedor-header">
         <div class="header-left">
-            <h3><b>CAJAPERUSA</b></h3>
+            <h3><a href="{% url 'home' %}" style="color: #fff;"><b>CAJAPERUSA</b></a></h3>
             <nav class="opciones-navbar-desktop">
                 <a href="{% url 'home' %}" class="cajaperusa"> INICIO</a>
                 <div class="contenedor-quehacemos-opciones">
@@ -247,7 +251,7 @@
                         <a href="{% url 'impresion_objeto' %}"><span> Impresión de diseños en objetos</span></a>
                     </div>
                 </div>
-                <a href="{% url 'personalizar_producto' %}" class="cajaperusa"> TIENDA</a>
+                <a href="" class="cajaperusa"> TIENDA</a>
 
             </nav>
         </div>
@@ -257,7 +261,11 @@
                 <i class="fa fa-search" aria-hidden="true"></i>
             </div>
             <span> CARRITO | {% if user.monto_pagar %}S/ {{user.monto_pagar}}{% else %}S/ 0.00{% endif %}</span>
-            <a href="{% url 'historial_pagos' %}" class="btn-sidebar"><span class="fa fa-shopping-cart"></span></a>
+            {% if user.username %}
+                <a href="{% url 'historial_pagos' %}" class="btn-sidebar"><span class="fa fa-shopping-cart"></span></a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn-sidebar"><span class="fa fa-shopping-cart"></span></a>
+            {% endif %}
         </div>
     </div>
 </header>

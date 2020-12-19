@@ -99,6 +99,16 @@ class HistorialPagosVIew(LoginRequiredMixin,TemplateView):
         return kwargs
 
 
+class PaymentPageVIew(LoginRequiredMixin,TemplateView):
+    template_name = "producto/payment_page.html"
+
+    # def get_context_data(self, **kwargs):
+    #     form = SolicitudDisenoForm
+    #     kwargs['form'] = form
+    #     return kwargs
+
+
+
 # Solicitudes de los 4
 class SolicitudCualquierTipoDisenoView(LoginRequiredMixin,TemplateView):
     template_name = "producto/solicitud_cualquier_tipo_diseno.html"

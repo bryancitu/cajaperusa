@@ -4,6 +4,7 @@ from .views import *
 urlpatterns = [
     path('personalizar-producto', PersonalizarProductoView.as_view(), name="personalizar_producto"),
     path('historial-pagos', HistorialPagosVIew.as_view(), name="historial_pagos"),
+    path('metodos-de-pago', PaymentPageVIew.as_view(), name="payment_page"),
     # paginas de los diferente tipos de productos
     path('cualquier-tipo-diseño', CualquierTipoDisenoView.as_view(), name="cualquier_tipo_diseno"),
     path('diseño-impresión-papel', DisenoImpresionPapelView.as_view(), name="diseno_impresion_papel"),

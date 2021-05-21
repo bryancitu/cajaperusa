@@ -41,7 +41,7 @@ class ImpresionObjetoView(TemplateView):
 
 class HistorialPagosVIew(LoginRequiredMixin,TemplateView):
     template_name = "producto/historial_pagos.html"
-    pass
+
     def get_context_data(self, **kwargs):
         user = Usuarios.objects.filter(id=self.request.user.id).first()
 
